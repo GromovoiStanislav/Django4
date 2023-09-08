@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ main_title|default:"Без заголовка"  }}</title>
+</head>
+<body>
+<p>{{ menu }}</p>
+<p>{{ menu|first }}</p>
+<p>{{ menu|last}}</p>
+<p>{{ menu|join:" | "}}</p>
+<p>{{ menu|length}}</p>
+
+<h1>{{ title }}</h1>
+<h1>{{ title|capfirst }}</h1>
+<h1>{{ title|upper }}</h1>
+<h1>{{ title|lower }}</h1>
+<h1>{{ title|cut:" "|cut:"!" }}</h1>
+
+<p>{{ slug }}</p>
+<p>{{ slug|slugify }}</p>
+<p>{{ sluged }}</p>
+
+</body>
+</html>
