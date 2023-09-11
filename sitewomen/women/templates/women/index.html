@@ -21,5 +21,20 @@
 <p>{{ slug|slugify }}</p>
 <p>{{ sluged }}</p>
 
+<ul>
+    {% for post in posts %}
+     {% if post.is_published %}
+    <li>
+        <h2>{{ post.title }} </h2>
+        <p>{{ post.content }}</p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+
 </body>
 </html>

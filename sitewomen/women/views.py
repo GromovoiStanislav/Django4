@@ -8,6 +8,12 @@ from django.template.defaultfilters import slugify
 # Create your views here.
 menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
 
+data_db = [
+    {'id': 1, 'title': 'Анжелина Джоли', 'content': 'Биография Анжелина Джоли', 'is_published': True},
+    {'id': 2, 'title': 'Марго Робби', 'content': 'Биография Марго Робби', 'is_published': True},
+    {'id': 3, 'title': 'Сандра Баллок', 'content': 'Биография Сандра Баллок', 'is_published': False},
+]
+
 
 def index(request):
     # return HttpResponse("<h1>Старница приложения women</h1>")
@@ -19,7 +25,8 @@ def index(request):
         'title': 'главная Страница!',
         'main_title': '',
         'menu': menu,
-        'slug':'"The Main Page!"',
+        'posts': data_db,
+        'slug': '"The Main Page!"',
         'sluged': slugify('"The Main Page!"'),
     }
     return render(request, 'women/index.html', context=data)
