@@ -6,7 +6,13 @@ from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
 
 # Create your views here.
-menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+
+menu = [
+    {'title': 'О сайте', 'url_name': 'about'},
+    {'title': 'Добавить статью', 'url_name': 'addpage'},
+    {'title': 'Обратная связь', 'url_name': 'contact'},
+    {'title': 'Войти', 'url_name': 'login'},
+]
 
 data_db = [
     {'id': 1, 'title': 'Анжелина Джоли', 'content': 'Биография Анжелина Джоли', 'is_published': True},
@@ -22,12 +28,13 @@ def index(request):
     # return HttpResponse(t)
 
     data = {
-        'title': 'главная Страница!',
-        'main_title': '',
+        'title': 'Главная страница',
         'menu': menu,
         'posts': data_db,
-        'slug': '"The Main Page!"',
-        'sluged': slugify('"The Main Page!"'),
+        # 'title': 'главная Страница!',
+        # 'main_title': '',
+        # 'slug': '"The Main Page!"',
+        # 'sluged': slugify('"The Main Page!"'),
     }
     return render(request, 'women/index.html', context=data)
 
@@ -35,6 +42,22 @@ def index(request):
 def about(request):
     data = {'title': 'О сайте'}
     return render(request, 'women/about.html', data)
+
+
+def show_post(request, post_id):
+    return HttpResponse(f"<h1>Статья с ID: {post_id}</h1>")
+
+
+def add_page(request):
+    return HttpResponse(f"<h1>Добавить статью</h1>")
+
+
+def contact(request):
+    return HttpResponse(f"<h1>Обратная связь</h1>")
+
+
+def login(request):
+    return HttpResponse(f"<h1>Авторизация</h1>")
 
 
 def categopies(request, cat_id):
@@ -61,7 +84,7 @@ def archive(request, year):
     return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
 
 
-def page_not_found(request, exeption):
+def page_not_found(request, exception):
     # return HttpResponseNotFound("<h1>Старница не найдена</h1>")
     try:
         print('Страница не найдена')
