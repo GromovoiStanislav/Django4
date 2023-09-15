@@ -15,7 +15,9 @@ menu = [
 ]
 
 data_db = [
-    {'id': 1, 'title': 'Анжелина Джоли', 'content': 'Биография Анжелина Джоли', 'is_published': True},
+    {'id': 1, 'title': 'Анджелина Джоли', 'content': '''<h1>Анджелина Джоли</h1> (англ. Angelina Jolie[7], при рождении Войт (англ. Voight), ранее Джоли Питт (англ. Jolie Pitt); род. 4 июня 1975, Лос-Анджелес, Калифорния, США) — американская актриса кино, телевидения и озвучивания, кинорежиссёр, сценаристка, продюсер, фотомодель, посол доброй воли ООН.
+       Обладательница премии «Оскар», трёх премий «Золотой глобус» (первая актриса в истории, три года подряд выигравшая премию) и двух «Премий Гильдии киноактёров США».''',
+     'is_published': True},
     {'id': 2, 'title': 'Марго Робби', 'content': 'Биография Марго Робби', 'is_published': True},
     {'id': 3, 'title': 'Сандра Баллок', 'content': 'Биография Сандра Баллок', 'is_published': False},
 ]
@@ -31,10 +33,8 @@ def index(request):
         'title': 'Главная страница',
         'menu': menu,
         'posts': data_db,
-        # 'title': 'главная Страница!',
-        # 'main_title': '',
-        # 'slug': '"The Main Page!"',
-        # 'sluged': slugify('"The Main Page!"'),
+
+
     }
     return render(request, 'women/index.html', context=data)
 
@@ -60,28 +60,6 @@ def login(request):
     return HttpResponse(f"<h1>Авторизация</h1>")
 
 
-def categopies(request, cat_id):
-    return HttpResponse(f"<h1>Статьи по категориям</h1><p>id: {cat_id}</p>")
-
-
-def categopies_by_slug(request, cat_slug):
-    if request.POST:
-        print(request.POST)
-    return HttpResponse(f"<h1>Статьи по категориям</h1><p>slug: {cat_slug}</p>")
-
-
-def archive(request, year):
-    if year > 2023:
-        # raise Http404()
-        # return redirect('/', permanent=True) # 301 or 302
-        # return redirect(index)
-        # return redirect('home')
-        # return redirect('cats', 'music')
-        uri = reverse('cats', args=('video',))
-        # return redirect(uri)
-        # return HttpResponseRedirect(uri) # 302
-        return HttpResponsePermanentRedirect('/')  # 301
-    return HttpResponse(f"<h1>Архив по годам</h1><p>{year}</p>")
 
 
 def page_not_found(request, exception):
